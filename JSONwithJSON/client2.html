@@ -1,0 +1,51 @@
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charse=UTF-8">
+</head>
+
+<script type="text/javascript">
+
+var AJAX=new XMLHttpRequest();
+
+function handler(){
+   if(AJAX.readystate==4 && AJAX.status==200)
+   {
+     var json=JSON.parse(AJAX.responseText);
+	 
+	 
+	 document.getElementById('a').value=json.name;
+	 document.getElementById('b').value=json.salary;
+	 document.getElementById('ba').value=json.balance;
+	 document.getElementById('vi').value=json.is_vip;
+	 document.getElementById('ni').value=json.nickname;
+   }
+    else if(AJAX.readyState==4 && AJAX.status!=200)
+	{
+	alert('somthing went wrong....');
+	}
+}
+
+function show()
+{
+	AJAX.onreadystatechange=handler;
+	AJAX.open("GET","service.jsp");
+	AJAX.send("");
+};
+
+</script>
+<body>
+	<a href="#" onclick="javascript:show();">Click Here </a>
+	<form name="f1"><br>
+	Name:<input name="a" id="a" value="">
+	<br>
+	Salary:<input name="b" id="b" value="">
+	<br>
+	Balance:<input name="ba" type="text" id="ba">
+	<br>
+	VIP:<input name="vip" type="text" id="vi">
+	<br>
+	NickName:<input name="nic" type="text" id="ni">
+
+</form>
+</body>
+</html>
